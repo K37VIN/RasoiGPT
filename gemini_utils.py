@@ -3,13 +3,14 @@ from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+import streamlit as st
 
 load_dotenv()
 
 # Function to lazily create the LLM
 def get_chain():
     GROQ_API_KEY = st.secrets("GROQ_API_KEY")
-    llm = ChatGroq(api_key=GROQ_API_KEY, model_name="gemma-7b-it")  # ✅ Fixed model name too
+    llm = ChatGroq(api_key=GROQ_API_KEY, model_name="gemma2-9b-it")  # ✅ Fixed model name too
 
     prompt_template = ChatPromptTemplate.from_template("""
     Based on the following ingredients: {ingredients}, suggest a simple Indian-style recipe.
