@@ -8,7 +8,7 @@ load_dotenv()
 
 # Function to lazily create the LLM
 def get_chain():
-    GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+    GROQ_API_KEY = st.secrets("GROQ_API_KEY")
     llm = ChatGroq(api_key=GROQ_API_KEY, model_name="gemma-7b-it")  # ✅ Fixed model name too
 
     prompt_template = ChatPromptTemplate.from_template("""
